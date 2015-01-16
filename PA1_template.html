@@ -220,13 +220,13 @@ mean_steps &lt;- mean(sum_steps)
 median_steps &lt;- median(sum_steps)
 </code></pre>
 
-<p>We find that the mean is <strong>9,354</strong> steps and the median is <strong>10,395</strong> steps.</p>
+<p>We find that the mean number of steps taken each day is <strong>9,354</strong> steps and the median number of steps taken each day is <strong>10,395</strong> steps.</p>
 
 <h2>What is the average daily activity pattern?</h2>
 
-<p>To answer this question we are asked to get the averge number of steps taken per 5-minute interval across all days, plot it as a line chart, and identify the interval which has the highest average number of steps.</p>
+<p>To answer this question we are asked to get the average number of steps taken per 5-minute interval across all days, plot it as a line chart, and identify the interval which has the highest average number of steps.</p>
 
-<p>First let&#39;s get the average number of steps per 5 minute interval.</p>
+<p>First let&#39;s get the average number of steps per 5-minute interval.</p>
 
 <pre><code class="r"># get the mean number of steps taken per day per interval
 avg_steps &lt;- tapply(a$steps, a$interval, mean, na.rm = TRUE)
@@ -250,11 +250,11 @@ plot(interval, avg_steps, type = &quot;l&quot;)
 max_interval &lt;- interval[match(max(avg_steps), avg_steps)]
 </code></pre>
 
-<p>The maximum average number of steps is <strong>206</strong> and the interval in which that occurs is <strong>835</strong>.</p>
+<p>The maximum average number of steps is <strong>206</strong> and the 5-minute interval in which that occurs is <strong>835</strong>.</p>
 
 <h2>Imputing missing values</h2>
 
-<p>When we look at this data we find that there are <strong>2,304</strong> missing values in the dataset.  We are going to fill in the missing values with the average number of steps for that interval, and put that into a new dataset.</p>
+<p>When we look at this data we find that there are <strong>2,304</strong> missing values in the dataset.  The strategy we are going to use to replace these missing values is to use the average number of steps for that interval, a number we just computed above.  </p>
 
 <pre><code class="r">
 # copy our original data
@@ -263,7 +263,7 @@ b &lt;- a
 # find indices with missing values for steps
 row_with_missing_steps &lt;- which(is.na(b[, &quot;steps&quot;]))
 
-# fill those in with the avarage value
+# fill those in with the average value
 b[row_with_missing_steps, &quot;steps&quot;] &lt;- avg_steps[row_with_missing_steps]
 
 # get total number of steps per day from the new set

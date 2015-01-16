@@ -58,14 +58,14 @@ median_steps <- median(sum_steps)
 ```
 
 
-We find that the mean is **9,354** steps and the median is **10,395** steps.
+We find that the mean number of steps taken each day is **9,354** steps and the median number of steps taken each day is **10,395** steps.
 
 
 
 ## What is the average daily activity pattern?
-To answer this question we are asked to get the averge number of steps taken per 5-minute interval across all days, plot it as a line chart, and identify the interval which has the highest average number of steps.
+To answer this question we are asked to get the average number of steps taken per 5-minute interval across all days, plot it as a line chart, and identify the interval which has the highest average number of steps.
 
-First let's get the average number of steps per 5 minute interval.
+First let's get the average number of steps per 5-minute interval.
 
 
 ```r
@@ -99,11 +99,11 @@ max_interval <- interval[match(max(avg_steps), avg_steps)]
 ```
 
 
-The maximum average number of steps is **206** and the interval in which that occurs is **835**.
+The maximum average number of steps is **206** and the 5-minute interval in which that occurs is **835**.
 
 
 ## Imputing missing values
-When we look at this data we find that there are **2,304** missing values in the dataset.  We are going to fill in the missing values with the average number of steps for that interval, and put that into a new dataset.
+When we look at this data we find that there are **2,304** missing values in the dataset.  The strategy we are going to use to replace these missing values is to use the average number of steps for that interval, a number we just computed above.  
 
 
 ```r
@@ -114,7 +114,7 @@ b <- a
 # find indices with missing values for steps
 row_with_missing_steps <- which(is.na(b[, "steps"]))
 
-# fill those in with the avarage value
+# fill those in with the average value
 b[row_with_missing_steps, "steps"] <- avg_steps[row_with_missing_steps]
 
 # get total number of steps per day from the new set
